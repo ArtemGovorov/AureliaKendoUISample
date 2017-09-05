@@ -24,8 +24,6 @@ describe("product configurator async created", () => {
         done();
     });
     it("is created with the right values", () => {
-        expect(sut.showSpinner).toBeFalsy();
-        expect(sut.error).toEqual({});
-        expect(sut.products).toEqual({});
+        expect(sut.products).toBeUndefined();
     });
 });
