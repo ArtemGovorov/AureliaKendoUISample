@@ -78,7 +78,8 @@
       }
     });
 
-    require(allTestFiles, window.__karma__.start);
+    // Race condition workaround : https://github.com/aurelia/cli/issues/685
+    setTimeout(function () { require(allTestFiles, window.__karma__.start); }, 2000);
   }
 
   karma.loaded = function() {}; // make it async
