@@ -1,0 +1,26 @@
+<template>
+    <require from="./inline-svg"></require>
+
+    <!-- Displays the quote number if a configuration has been successfully saved -->
+    <div if.bind="quoteNumber" class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span t="[prepend]customer.quote">${quoteNumber}</span>
+    </div>
+    <div class="content row row-eq-height">
+        <div class="intro-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1>Customer Portal</h1>
+            <!--<p>Welcome to the Genius Customer Portal. Create quotes from your price list or from product configurators. Manage et follow your quotes and orders easily directly in your browser. </p>-->
+        </div>
+        <div repeat.for="customer of customers" class="block-section col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <a href="#" click.trigger="goToConfigurator()">
+                <div class="text">
+                    <h4>${customer.title}</h4>
+                    <p>${customer.desc}</p>
+                    <div>
+                        <inline-svg svg="${customer.svg}"></inline-svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,34 @@
+<template>
+    <require from="aurelia-kendoui-bridge/notification/notification"></require>
+    <require from="aurelia-kendoui-bridge/notification/notification-template"></require>
+
+    <!-- Displays an error in case the RestAPI fails to respond -->
+    <div id="errorDisplay">
+        <ak-notification id="staticNotification" k-append-to="#errorDisplay" k-button="true" k-hide-on-click="false" k-auto-hide-after="0"
+            k-widget.bind="staticNotification">
+        </ak-notification>
+    </div>
+
+    <!-- Displays a spinning icon while an async task is run -->
+    <div show.bind="showSpinner" class="loading-screen">
+        <i class="fa fa-circle-o-notch fa-5x fa-spin loading-object"></i>
+    </div>
+
+    <!-- Displays each configurable product -->
+    <div if.bind="products" class="content-main">
+        <div class="content row">
+            <div class="intro-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1>Products Configurator</h1>
+            </div>
+            <div repeat.for="product of products" class="block-section col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <a href="#" click.trigger="goToProduct(product.id)">
+                    <div class="text">
+                        <h4>${product.name}</h4>
+                        <p>${product.descriptions[i18n.getLocale().slice(0, 2)]}</p>
+                        <div class="product-img"><img t="[alt]product.picture" alt="Product Picture" src="${product.base64Image}" class="product-image" /></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</template>
